@@ -19,6 +19,15 @@
   <%= link_to('Login', new_employee_session_path)  %>  
 </li>
 <% end %>
+
+<% if employee_signed_in? %>
+<% if current_employee.role == "admin" %>
+<li>
+<%= link_to 'articles' , admins_articles_path %>
+</li>
+<% end %>
+<% end %>
+
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 <%= yield %>
