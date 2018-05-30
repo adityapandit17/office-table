@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OfficeTable</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <% if employee_signed_in? %>
+  <li>
+   Logged in as <%= current_employee.email %>
+   <%= link_to('Logout', destroy_employee_session_path, method: :delete) %>        
+ </li>
+ <% else %>
+ <li>
+  <%= link_to('Login', new_employee_session_path)  %>  
+</li>
+<% end %>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+<%= yield %>
+</body>
+</html>

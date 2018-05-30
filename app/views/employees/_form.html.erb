@@ -1,0 +1,87 @@
+<%= form_with(model: employee, local: true) do |form| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% employee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :employee_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, id: :employee_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city, id: :employee_city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state, id: :employee_state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pincode %>
+    <%= form.text_field :pincode, id: :employee_pincode %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dob %>
+    <%= form.date_select :dob, id: :employee_dob %>
+  </div>
+
+  <div class="field">
+    <%= form.label :blood_group %>
+    <%= form.text_field :blood_group, id: :employee_blood_group %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_no %>
+    <%= form.text_field :contact_no, id: :employee_contact_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :designation %>
+    <%= form.text_field :designation, id: :employee_designation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :technology %>
+    <%= form.text_field :technology, id: :employee_technology %>
+  </div>
+
+  <div class="field">
+    <%= form.label :document %>
+    <%= form.text_field :document, id: :employee_document %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :employee_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.text_field :password, id: :employee_password %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation %>
+    <%= form.text_field :password_confirmation, id: :employee_password_confirmation , type:"password" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
