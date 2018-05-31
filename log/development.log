@@ -869,3 +869,279 @@ Processing by EmployeesController#index as HTML
 Completed 200 OK in 36ms (Views: 34.7ms | ActiveRecord: 0.3ms)
 
 
+Started GET "/" for 127.0.0.1 at 2018-05-31 18:08:10 +0530
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EmployeesController#index as HTML
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `search' for #<Class:0x007f08240645e0>):
+  
+app/controllers/employees_controller.rb:8:in `index'
+Started GET "/" for 127.0.0.1 at 2018-05-31 18:09:04 +0530
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EmployeesController#index as HTML
+  Rendering employees/index.html.erb within layouts/application
+  [1m[36mEmployee Load (17.5ms)[0m  [1m[34mSELECT "employees".* FROM "employees"[0m
+  Rendered employees/index.html.erb within layouts/application (111.9ms)
+Completed 200 OK in 491ms (Views: 463.2ms | ActiveRecord: 19.7ms)
+
+
+Started GET "/employees/sign_in" for 127.0.0.1 at 2018-05-31 18:09:09 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/aditya/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/devise-4.4.3/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/aditya/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/devise-4.4.3/app/views/devise/shared/_links.html.erb (7.8ms)
+  Rendered /home/aditya/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/devise-4.4.3/app/views/devise/sessions/new.html.erb within layouts/application (314.8ms)
+Completed 200 OK in 418ms (Views: 399.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/employees/sign_in" for 127.0.0.1 at 2018-05-31 18:09:15 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EqJiU453k4iB+O6XkAy+G/zIadcPY3Gf6mNg8o+kjsHtOiF1/BXg2Tet9taAAT+hjOdRyvJ1h8mVUuvnyfmYRQ==", "employee"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mEmployee Load (9.0ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "admin@example.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[33mUPDATE "employees" SET "current_sign_in_at" = ?, "last_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "employees"."id" = ?[0m  [["current_sign_in_at", "2018-05-31 12:39:15.684946"], ["last_sign_in_at", "2018-05-30 10:25:45.706306"], ["sign_in_count", 7], ["updated_at", "2018-05-31 12:39:15.686275"], ["id", 1]]
+  [1m[35m (58.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/admins/employees
+Completed 302 Found in 467ms (ActiveRecord: 68.5ms)
+
+
+Started GET "/admins/employees" for 127.0.0.1 at 2018-05-31 18:09:15 +0530
+Processing by Admins::EmployeesController#index as HTML
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering admins/employees/index.html.erb within layouts/application
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees"[0m
+  Rendered admins/employees/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 80ms (Views: 62.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admins/employees/1/edit" for 127.0.0.1 at 2018-05-31 18:09:24 +0530
+Processing by Admins::EmployeesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering admins/employees/edit.html.erb within layouts/application
+  Rendered admins/employees/_form.html.erb (65.7ms)
+  Rendered admins/employees/edit.html.erb within layouts/application (77.8ms)
+Completed 200 OK in 155ms (Views: 113.3ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/admins/employees/1" for 127.0.0.1 at 2018-05-31 18:09:47 +0530
+Processing by Admins::EmployeesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"HJ5N+nGOB06U8wmTC27GFDQ89bitgr/B+XbWx42aFs7S5KL2YCk1ceTx2wemtMBcb8kwdi7GUDHRDUmnBJLzhA==", "employee"=>{"name"=>"aditya pandit", "address"=>"", "city"=>"", "state"=>"", "pincode"=>"", "dob(1i)"=>"2018", "dob(2i)"=>"5", "dob(3i)"=>"31", "blood_group"=>"", "contact_no"=>"", "designation"=>"", "technology"=>"", "email"=>"admin@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Update Employee", "id"=>"1"}
+  [1m[36mEmployee Load (1.0ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mEmployee Load (3.8ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "employees" SET "name" = ?, "address" = ?, "city" = ?, "state" = ?, "pincode" = ?, "blood_group" = ?, "contact_no" = ?, "designation" = ?, "technology" = ?, "encrypted_password" = ?, "dob" = ?, "updated_at" = ? WHERE "employees"."id" = ?[0m  [["name", "aditya pandit"], ["address", ""], ["city", ""], ["state", ""], ["pincode", ""], ["blood_group", ""], ["contact_no", ""], ["designation", ""], ["technology", ""], ["encrypted_password", "$2a$11$u0VixuNnba6FcHoPBZ68X.TIXVZ1Ifv/Gq1Lt/YhAeo2vQlMOIDp2"], ["dob", "2018-05-31"], ["updated_at", "2018-05-31 12:39:48.038362"], ["id", 1]]
+  [1m[35m (52.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/employees/1
+Completed 302 Found in 310ms (ActiveRecord: 57.6ms)
+
+
+Started GET "/employees/1" for 127.0.0.1 at 2018-05-31 18:09:48 +0530
+Processing by EmployeesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering employees/show.html.erb within layouts/application
+  Rendered employees/show.html.erb within layouts/application (3.2ms)
+  [1m[36mEmployee Load (1.0ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 63ms (Views: 46.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/employees" for 127.0.0.1 at 2018-05-31 18:09:50 +0530
+Processing by EmployeesController#index as HTML
+  Rendering employees/index.html.erb within layouts/application
+  [1m[36mEmployee Load (1.0ms)[0m  [1m[34mSELECT "employees".* FROM "employees"[0m
+  Rendered employees/index.html.erb within layouts/application (8.9ms)
+Completed 200 OK in 52ms (Views: 46.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/employees/sign_in" for 127.0.0.1 at 2018-05-31 18:09:54 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/aditya/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/devise-4.4.3/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/aditya/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/devise-4.4.3/app/views/devise/shared/_links.html.erb (3.8ms)
+  Rendered /home/aditya/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/devise-4.4.3/app/views/devise/sessions/new.html.erb within layouts/application (17.2ms)
+Completed 200 OK in 64ms (Views: 56.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/employees/sign_in" for 127.0.0.1 at 2018-05-31 18:10:05 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"o6P/55PW0wpGmtlXGbSZqC0THx5rp8hBZTSOQuJS3kmMHY54FPatAwmPrjyqn8k26005+3v3QMNTSurbo38bPQ==", "employee"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mEmployee Load (0.6ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "admin@example.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "employees" SET "current_sign_in_at" = ?, "last_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "employees"."id" = ?[0m  [["current_sign_in_at", "2018-05-31 12:40:05.389694"], ["last_sign_in_at", "2018-05-31 12:39:15.684946"], ["sign_in_count", 8], ["updated_at", "2018-05-31 12:40:05.390554"], ["id", 1]]
+  [1m[35m (58.8ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/admins/employees
+Completed 302 Found in 264ms (ActiveRecord: 60.2ms)
+
+
+Started GET "/admins/employees" for 127.0.0.1 at 2018-05-31 18:10:05 +0530
+Processing by Admins::EmployeesController#index as HTML
+  [1m[36mEmployee Load (0.6ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering admins/employees/index.html.erb within layouts/application
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees"[0m
+  Rendered admins/employees/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 38ms (Views: 32.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/admins/employees/2/edit" for 127.0.0.1 at 2018-05-31 18:10:12 +0530
+Processing by Admins::EmployeesController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.4ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.5ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering admins/employees/edit.html.erb within layouts/application
+  Rendered admins/employees/_form.html.erb (15.7ms)
+  Rendered admins/employees/edit.html.erb within layouts/application (18.8ms)
+Completed 200 OK in 54ms (Views: 47.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-31 18:11:28 +0530
+Processing by EmployeesController#index as HTML
+  Rendering employees/index.html.erb within layouts/application
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees"[0m
+  Rendered employees/index.html.erb within layouts/application (35.5ms)
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 58ms (Views: 52.7ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-31 18:11:36 +0530
+Processing by EmployeesController#index as HTML
+  Rendering employees/index.html.erb within layouts/application
+  [1m[36mEmployee Load (0.4ms)[0m  [1m[34mSELECT "employees".* FROM "employees"[0m
+  Rendered employees/index.html.erb within layouts/application (5.7ms)
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 41ms (Views: 36.9ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/employees/sign_out" for 127.0.0.1 at 2018-05-31 18:11:39 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"UUSSIJqQhwf/+DBpjsNKl0jdQCjU8JjKJM6XwEoOAgHFOMxMneRvE+xm+Lgw25kRYIuiE66R8P8m207b3ffY/A=="}
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 32ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-31 18:11:39 +0530
+Processing by EmployeesController#index as HTML
+  Rendering employees/index.html.erb within layouts/application
+  [1m[36mEmployee Load (1.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees"[0m
+  Rendered employees/index.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 32ms (Views: 28.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/employees/sign_in" for 127.0.0.1 at 2018-05-31 18:11:41 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering /home/aditya/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/devise-4.4.3/app/views/devise/sessions/new.html.erb within layouts/application
+  Rendered /home/aditya/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/devise-4.4.3/app/views/devise/shared/_links.html.erb (1.8ms)
+  Rendered /home/aditya/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/devise-4.4.3/app/views/devise/sessions/new.html.erb within layouts/application (9.6ms)
+Completed 200 OK in 51ms (Views: 49.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/employees/sign_in" for 127.0.0.1 at 2018-05-31 18:11:46 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TnbBGDf8fNTrBT9u5k0Cwz7EVrMYfhnKkJCoVj8QhF42VH4+vn9tEo5wn/uXntT2mdXH7+PlfNL87TfebsusAw==", "employee"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mEmployee Load (0.5ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."email" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["email", "admin@example.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "employees" SET "current_sign_in_at" = ?, "last_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "employees"."id" = ?[0m  [["current_sign_in_at", "2018-05-31 12:41:46.832120"], ["last_sign_in_at", "2018-05-31 12:40:05.389694"], ["sign_in_count", 9], ["updated_at", "2018-05-31 12:41:46.832988"], ["id", 1]]
+  [1m[35m (64.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/admins/employees
+Completed 302 Found in 301ms (ActiveRecord: 65.7ms)
+
+
+Started GET "/admins/employees" for 127.0.0.1 at 2018-05-31 18:11:46 +0530
+Processing by Admins::EmployeesController#index as HTML
+  [1m[36mEmployee Load (0.7ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering admins/employees/index.html.erb within layouts/application
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT "employees".* FROM "employees"[0m
+  Rendered admins/employees/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 34ms (Views: 27.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/admins/employees/2/edit" for 127.0.0.1 at 2018-05-31 18:11:57 +0530
+Processing by Admins::EmployeesController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mEmployee Load (0.5ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.7ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering admins/employees/edit.html.erb within layouts/application
+  Rendered admins/employees/_form.html.erb (20.2ms)
+  Rendered admins/employees/edit.html.erb within layouts/application (23.9ms)
+Completed 200 OK in 65ms (Views: 55.0ms | ActiveRecord: 1.2ms)
+
+
+Started PATCH "/admins/employees/2" for 127.0.0.1 at 2018-05-31 18:12:25 +0530
+Processing by Admins::EmployeesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"oLn/6/jgZBGXqvLgPQx/v/ZxZU0bLTOzVk0sLp33tmGVUARLPRvFllRhYb/gJMNmgPVVHoXwSeFCovAitn0cvw==", "employee"=>{"name"=>"aman kale", "address"=>"", "city"=>"", "state"=>"", "pincode"=>"", "dob(1i)"=>"2018", "dob(2i)"=>"5", "dob(3i)"=>"30", "blood_group"=>"", "contact_no"=>"", "designation"=>"", "technology"=>"", "document"=>#<ActionDispatch::Http::UploadedFile:0x00556130b5cac0 @tempfile=#<Tempfile:/tmp/RackMultipart20180531-9464-5uw83f.jpg>, @original_filename="25013339_533697266993238_2884043609819054080_n.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"employee[document]\"; filename=\"25013339_533697266993238_2884043609819054080_n.jpg\"\r\nContent-Type: image/jpeg\r\n">, "email"=>"aman@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Update Employee", "id"=>"2"}
+  [1m[36mEmployee Load (0.4ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEmployee Load (0.9ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "employees" SET "name" = ?, "document" = ?, "encrypted_password" = ?, "updated_at" = ? WHERE "employees"."id" = ?[0m  [["name", "aman kale"], ["document", "25013339_533697266993238_2884043609819054080_n.jpg"], ["encrypted_password", "$2a$11$wv7TsaxXOR7Q0kAmsfNJZeLeXs2KUQi2x9UAhNC5RDOMydGFcfAU2"], ["updated_at", "2018-05-31 12:42:25.413991"], ["id", 2]]
+  [1m[35m (61.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/admins/employees.2
+Completed 302 Found in 328ms (ActiveRecord: 63.3ms)
+
+
+Started GET "/admins/employees.2" for 127.0.0.1 at 2018-05-31 18:12:25 +0530
+Processing by Admins::EmployeesController#index as 
+  [1m[36mEmployee Load (0.3ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering admins/employees/index.html.erb within layouts/application
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees"[0m
+  Rendered admins/employees/index.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 55ms (Views: 40.7ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/employees/sign_out" for 127.0.0.1 at 2018-05-31 18:12:36 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"Jr4MPQt7IpaLE/8IqpDvcJ7zQlLS1gd5fauFNsJ7OM8JafzTICv/JGYjX5ijiOHlFW3SPhtnO3btUpyOZjX0aA=="}
+  [1m[36mEmployee Load (0.8ms)[0m  [1m[34mSELECT  "employees".* FROM "employees" WHERE "employees"."id" = ? ORDER BY "employees"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 13ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-31 18:12:36 +0530
+Processing by EmployeesController#index as HTML
+  Rendering employees/index.html.erb within layouts/application
+  [1m[36mEmployee Load (0.6ms)[0m  [1m[34mSELECT "employees".* FROM "employees"[0m
+  Rendered employees/index.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 31ms (Views: 27.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/employees?utf8=%E2%9C%93&q%5Bname_cont%5D=aman+kale&commit=Search" for 127.0.0.1 at 2018-05-31 18:12:41 +0530
+Processing by EmployeesController#index as HTML
+  Parameters: {"utf8"=>"✓", "q"=>{"name_cont"=>"aman kale"}, "commit"=>"Search"}
+  Rendering employees/index.html.erb within layouts/application
+  [1m[36mEmployee Load (0.5ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE ("employees"."name" LIKE '%aman kale%')[0m
+  Rendered employees/index.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 45ms (Views: 39.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/employees?utf8=%E2%9C%93&q%5Bname_cont%5D=aditya+pandit&commit=Search" for 127.0.0.1 at 2018-05-31 18:12:47 +0530
+Processing by EmployeesController#index as HTML
+  Parameters: {"utf8"=>"✓", "q"=>{"name_cont"=>"aditya pandit"}, "commit"=>"Search"}
+  Rendering employees/index.html.erb within layouts/application
+  [1m[36mEmployee Load (0.4ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE ("employees"."name" LIKE '%aditya pandit%')[0m
+  Rendered employees/index.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 47ms (Views: 39.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2018-05-31 18:12:54 +0530
+Processing by ArticlesController#index as HTML
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.0ms)
+
+
+  
+NameError (uninitialized constant ArticlesController::Articles):
+  
+app/controllers/articles_controller.rb:8:in `index'
+Started GET "/articles" for 127.0.0.1 at 2018-05-31 18:13:20 +0530
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  Rendered articles/index.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 31ms (Views: 26.5ms | ActiveRecord: 0.8ms)
+
+

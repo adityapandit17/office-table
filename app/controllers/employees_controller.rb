@@ -5,6 +5,8 @@ class EmployeesController < ApplicationController
   # GET /employees.json
   def index
     @employees = Employee.all
+    @search = Employee.search(params[:q])
+    @employees = @search.result
   end
 
   # GET /employees/1
